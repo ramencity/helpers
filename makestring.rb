@@ -41,16 +41,14 @@ optparse.parse!
 
 ##
 
-if options[:length] == nil
+total = options[:length].to_i
+
+if total == nil
   puts "Please enter the desired string length."
-  options[:length] = gets.chomp
+  total = gets.chomp
 end
 
 alphabet = ('a'..'z').to_a
-
-if options[:include_space]
-  alphabet.push(' ')
-end
 
 if options[:uppercase]
   ('A'..'Z').each do |e|
@@ -66,6 +64,25 @@ end
 
 array = []
 
-options[:length].to_i.times { array.push(alphabet.sample) }
+if options[:include_space]
+  i = 0;
+  while i < total
+    word_length = (4..10).to_a.sample
+    word_length.times { array.push(alphabet.sample) }
+    array.push(' ')
+    i += word_length
+  end
 
-puts "\n" + array.join + "\n\n"
+  overage = array.size - total
+  if overage > 0
+    overage.times { array.pop }
+  end
+  if array[-1] == ' '
+    array.pop
+    array.push(alphabet.sample)
+  end
+else
+  total.times { array.push(alphabet.sample) }
+end
+
+puts "\n#{array.join}\n\n"
