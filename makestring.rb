@@ -72,7 +72,11 @@ if options[:include_space]
     word.times { array.push(alphabet.sample) }
     i += word
       if i < total
+        if i == (total - 1)
+          array.push(alphabet.sample)
+        else
         array.push(' ')
+      end
         i += 1
       end
     end
