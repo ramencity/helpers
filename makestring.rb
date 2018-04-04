@@ -41,47 +41,47 @@ optparse.parse!
 
 ##
 
-total = options[:length].to_i
+  total = options[:length].to_i
 
-if total == 0
-  puts "Please enter the desired string length."
-  total = gets.chomp.to_i
-end
-
-alphabet = ('a'..'z').to_a
-
-if options[:uppercase]
-  ('A'..'Z').each do |e|
-    alphabet.push(e)
+  if total == 0
+    puts "Please enter the desired string length."
+    total = gets.chomp.to_i
   end
-end
 
-if options[:numeral]
- (0..9).each do |e|
-    alphabet.push(e)
-  end
-end
+  alphabet = ('a'..'z').to_a
 
-array = []
-
-if options[:no_space]
-    total.times { array.push(alphabet.sample) }
-  else
-  i = 0;
-  while i < total
-    word_length = (4..10).to_a.sample
-    word = word_length < (total - i) ? word_length : (total - i)
-    word.times { array.push(alphabet.sample) }
-    i += word
-      if i < total
-        if i == (total - 1)
-          array.push(alphabet.sample)
-        else
-        array.push(' ')
-      end
-        i += 1
-      end
+  if options[:uppercase]
+    ('A'..'Z').each do |e|
+      alphabet.push(e)
     end
-end
+  end
 
-puts "\n#{array.join}\n\n"
+  if options[:numeral]
+   (0..9).each do |e|
+      alphabet.push(e)
+    end
+  end
+
+  array = []
+
+  if options[:no_space]
+      total.times { array.push(alphabet.sample) }
+    else
+    i = 0;
+    while i < total
+      word_length = (4..10).to_a.sample
+      word = word_length < (total - i) ? word_length : (total - i)
+      word.times { array.push(alphabet.sample) }
+      i += word
+        if i < total
+          if i == (total - 1)
+            array.push(alphabet.sample)
+          else
+          array.push(' ')
+        end
+          i += 1
+        end
+      end
+  end
+
+  puts "\n#{array.join}\n\n"
