@@ -30,6 +30,11 @@ optparse = OptionParser.new do |opts|
     options[:numeral] = numeral
   end
 
+  options[:numbers_only]
+  opts.on('--int', 'return a string of numbers only') do |numbers_only|
+    options[:numbers_only] = numbers_only
+  end
+
   opts.on('-h', '--help', 'Display this screen') do
     puts opts
     exit
@@ -48,19 +53,23 @@ optparse.parse!
     total = gets.chomp.to_i
   end
 
-  alphabet = ('a'..'z').to_a
+  if options[:numbers_only]
+    alphabet = ('0'..'9').to_a
+  else
+    alphabet = ('a'..'z').to_a
 
-  if options[:uppercase]
-    ('A'..'Z').each do |e|
-      alphabet.push(e)
+    if options[:uppercase]
+      ('A'..'Z').each do |e|
+        alphabet.push(e)
+      end
     end
-  end
 
-  if options[:numeral]
-   (0..9).each do |e|
-      alphabet.push(e)
+    if options[:numeral]
+     (0..9).each do |e|
+        alphabet.push(e)
+      end
     end
-  end
+  end #defining 'alphabet'
 
   array = []
 
