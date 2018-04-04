@@ -15,9 +15,9 @@ optparse = OptionParser.new do |opts|
     options[:length] = length
   end
 
-  options[:include_space]
-  opts.on('-s', '--space', 'include spacebar characters in string') do |include_space|
-    options[:include_space] = include_space
+  options[:no_space]
+  opts.on('--nospace', 'string has no spaces in it; defaults to a string with spaces inserted') do |no_space|
+    options[:no_space] = no_space
   end
 
   options[:uppercase]
@@ -64,7 +64,9 @@ end
 
 array = []
 
-if options[:include_space]
+if options[:no_space]
+    total.times { array.push(alphabet.sample) }
+  else
   i = 0;
   while i < total
     word_length = (4..10).to_a.sample
@@ -80,8 +82,6 @@ if options[:include_space]
         i += 1
       end
     end
-else
-  total.times { array.push(alphabet.sample) }
 end
 
 puts "\n#{array.join}\n\n"
