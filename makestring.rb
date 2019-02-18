@@ -92,5 +92,6 @@ optparse.parse!
         end
       end
   end
-
-  puts "\n#{array.join}\n\n"
+  string = array.join
+  string = string.gsub('kkk', 'qqq') # nazi punks eff off
+  puts "\n#{string}\n\n"
