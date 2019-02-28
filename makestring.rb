@@ -78,10 +78,10 @@ optparse.parse!
     else
     i = 0;
     while i < total
-      word_length = (4..10).to_a.sample
-      word = word_length < (total - i) ? word_length : (total - i)
-      word.times { array.push(alphabet.sample) }
-      i += word
+      char_count = (4..10).to_a.sample
+      word_size = char_count < (total - i) ? char_count : (total - i)
+      word_size.times { array.push(alphabet.sample) }
+      i += word_size
         if i < total
           if i == (total - 1)
             array.push(alphabet.sample)
@@ -92,6 +92,6 @@ optparse.parse!
         end
       end
   end
-  string = array.join
-  string = string.gsub('kkk', 'qqq') # nazi punks eff off
+
+  string = array.join.gsub('kkk', 'qqq') # nazi punks eff off
   puts "\n#{string}\n\n"
