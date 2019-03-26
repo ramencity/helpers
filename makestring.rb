@@ -44,46 +44,46 @@ end
 # Parse the command-line:
 optparse.parse!
 
-  total = options[:length].to_i
+total = options[:length].to_i
 
-  if total == 0
-    puts "Please enter the desired string length."
-    total = gets.chomp.to_i
+if total == 0
+  puts "Please enter the desired string length."
+  total = gets.chomp.to_i
+end
+
+alphabet = options[:numbers_only] ? ('0'..'9').to_a : ('a'..'z').to_a
+
+if options[:uppercase]
+  ('A'..'Z').each do |e|
+    alphabet.push(e)
   end
+end
 
-  alphabet = options[:numbers_only] ? ('0'..'9').to_a : ('a'..'z').to_a
-
-    if options[:uppercase]
-      ('A'..'Z').each do |e|
-        alphabet.push(e)
-      end
-    end
-
-    if options[:numeral]
-     (0..9).each do |e|
-        alphabet.push(e)
+if options[:numeral]
+  (0..9).each do |e|
+    alphabet.push(e) 
   end #defining 'alphabet'
 
   array = []
 
   if options[:no_space]
-      total.times { array.push(alphabet.sample) }
-    else
-    i = 0;
+    total.times {array.push(alphabet.sample)}
+  else
+    i = 0
     while i < total
       char_count = (4..10).to_a.sample
       word_size = char_count < (total - i) ? char_count : (total - i)
-      word_size.times { array.push(alphabet.sample) }
+      word_size.times {array.push(alphabet.sample)}
       i += word_size
-        if i < total
-          if i == (total - 1)
-            array.push(alphabet.sample)
-          else
+      if i < total
+        if i == (total - 1)
+          array.push(alphabet.sample)
+        else
           array.push(' ')
         end
-          i += 1
-        end
+        i += 1
       end
+    end
   end
 
   string = array.join.gsub('kkk', 'qqq') # nazi punks eff off
