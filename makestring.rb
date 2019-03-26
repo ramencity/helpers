@@ -63,6 +63,7 @@ if options[:numeral]
   (0..9).each do |e|
     alphabet.push(e) 
   end #defining 'alphabet'
+end
 
   array = []
 
