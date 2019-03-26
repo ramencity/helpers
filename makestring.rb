@@ -44,8 +44,6 @@ end
 # Parse the command-line:
 optparse.parse!
 
-##
-
   total = options[:length].to_i
 
   if total == 0
@@ -53,10 +51,7 @@ optparse.parse!
     total = gets.chomp.to_i
   end
 
-  if options[:numbers_only]
-    alphabet = ('0'..'9').to_a
-  else
-    alphabet = ('a'..'z').to_a
+  alphabet = options[:numbers_only] ? ('0'..'9').to_a : ('a'..'z').to_a
 
     if options[:uppercase]
       ('A'..'Z').each do |e|
@@ -67,8 +62,6 @@ optparse.parse!
     if options[:numeral]
      (0..9).each do |e|
         alphabet.push(e)
-      end
-    end
   end #defining 'alphabet'
 
   array = []
