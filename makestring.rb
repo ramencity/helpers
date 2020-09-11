@@ -35,6 +35,11 @@ optparse = OptionParser.new do |opts|
     options[:numbers_only] = numbers_only
   end
 
+  options[:file]
+  opts.on('-f', 'write results to a file rather than to the screen') do |file|
+    options[:file] = file
+end
+
   opts.on('-h', '--help', 'Display this screen') do
     puts opts
     exit
@@ -61,7 +66,7 @@ end
 
 if options[:numeral]
   (0..9).each do |e|
-    alphabet.push(e) 
+    alphabet.push(e)
   end #defining 'alphabet'
 end
 
@@ -87,5 +92,13 @@ end
     end
   end
 
-  string = array.join.gsub('kkk', 'qqq') # nazi punks eff off
-  puts "\n#{string}\n\n"
+  @string = array.join.gsub('kkk', 'qqq') # nazi punks eff off
+
+  if options[:file]
+    filename = "#{ENV["HOME"]}/Downloads/string_#{Time.now.to_i}.txt"
+    file = File.open(filename, "w")
+    file.write(@string)
+    file.close
+  else
+    puts "\n#{@string}\n\n"
+  end
